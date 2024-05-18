@@ -24,6 +24,11 @@ Route::middleware('auth:api')->group(function () {
     //// TASKS ////
 
     Route::prefix('tasks')->group(function () {
-        Route::post('', [TaskController::class, 'create']);
+        Route::post('/', [TaskController::class, 'create']);
+        Route::get('/', [TaskController::class, 'get']);
+        Route::get('/{uid}', [TaskController::class, 'find']);
+        
+        Route::put('/{uid}', [TaskController::class, 'update']);
+        Route::delete('/{uid}', [TaskController::class, 'delete']);
     });
 });
