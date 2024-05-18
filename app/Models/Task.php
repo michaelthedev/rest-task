@@ -17,6 +17,11 @@ class Task extends Model
         'due_date',
     ];
 
+    protected $hidden = [
+        'id',
+        'user_id',
+    ];
+
     protected $casts = [
         'due_date' => 'datetime'
     ];
