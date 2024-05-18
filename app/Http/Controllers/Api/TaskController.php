@@ -62,6 +62,9 @@ final class TaskController extends Controller
 
     public function update(Request $request, string $uid): JsonResponse
     {
+        $request->validate([
+
+        ]);
         $task = $this->getTask($uid);
         if (!$task) {
             return response()->json([
@@ -69,10 +72,9 @@ final class TaskController extends Controller
             ], 404);
         }
 
-        $task->update([
-            'title' => $request->title,
-            'description' => $request->description,
-        ]);
+        $task->update(
+            $request->only($task->getFillable())
+        );
 
         return response()->json([
             'message' => 'Task updated',
