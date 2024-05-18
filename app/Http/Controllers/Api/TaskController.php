@@ -19,6 +19,7 @@ final class TaskController extends Controller
         ]);
 
         $task = auth()->user()->tasks()->create([
+            'uid' => uniqid(),
             'title' => $request->title,
             'description' => $request->description,
             'label' => $request->label,
