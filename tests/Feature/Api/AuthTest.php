@@ -60,4 +60,61 @@ class AuthTest extends TestCase
                 'message' => 'success'
             ]);
     }
+
+    public function test_user_can_refresh_token(): void
+    {
+        $this->create_user();
+
+        $user = User::where('email', $this->userInfo['email'])
+            ->first();
+
+        $token = JWTAuth::fromUser($user);
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer '.$token,
+        ])->json('POST', '/api/auth/refresh');
+
+        $response
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'data' => [
+                    'access_token', 'token_type', 'expires_in'
+                ]
+            ]);
+    }
+
+    public function test_user_can_logout(): void
+    {
+        $this->create_user();
+
+        $user = User::where('email', $this->userInfo['email'])
+            ->first();
+
+        $token = JWTAuth::fromUser($user);
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer '.$token,
+        ])->json('POST', '/api/auth/logout');
+
+        $response->assertStatus(200)
+            ->assertJson(['message' => 'Logout successful']);
+    }
+
+    public function test_user_cannot_register_with_existing_email(): void
+    {
+        // create first user
+        $this->create_user();
+
+        // attempt to create another with the same email
+        $data = $this->userInfo;
+        $data['password_confirmation'] = $data['password'];
+
+        $response = $this->json('POST', '/api/auth/register', $data);
+
+        $response->assertStatus(422)
+            ->assertJson([
+                'message' => 'The email has already been taken.',
+                'errors' => [
+                    'email' => ['The email has already been taken.']
+                ]
+            ]);
+    }
 }
