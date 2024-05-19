@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\CreateTask;
+use App\Jobs\DeleteTask;
+use App\Jobs\UpdateTask;
 use App\Models\Task;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -25,6 +28,8 @@ final class TaskController extends Controller
             'label' => $request->label,
             'due_date' => $request->due_date,
         ]);
+
+        CreateTask::dispatch($task);
 
         return response()->json([
             'message' => 'Task created',
@@ -60,11 +65,15 @@ final class TaskController extends Controller
         ]);
     }
 
+    /**
+     * Update a task by its unique id
+     * It'll only update data passed to it
+     * @param Request $request
+     * @param string $uid
+     * @return JsonResponse
+     */
     public function update(Request $request, string $uid): JsonResponse
     {
-        $request->validate([
-
-        ]);
         $task = $this->getTask($uid);
         if (!$task) {
             return response()->json([
@@ -75,6 +84,8 @@ final class TaskController extends Controller
         $task->update(
             $request->only($task->getFillable())
         );
+
+        UpdateTask::dispatch($task);
 
         return response()->json([
             'message' => 'Task updated',
@@ -92,6 +103,11 @@ final class TaskController extends Controller
         }
 
         $task->delete();
+
+        DeleteTask::dispatch([
+            'uid' => $uid,
+            'user_id' => auth()->id(),
+        ]);
 
         return response()->json([
             'message' => 'Task deleted',
