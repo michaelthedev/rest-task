@@ -59,8 +59,13 @@ This project is my attempt at the [Niyo Group task](https://docs.google.com/docu
     ```
 
 ## API endpoints
-Check the [Postman documentation](https://documenter.getpostman.com/view/10657913/2sA3QmEaG2) for more details about the API endpoints
 
+### API Documentation
+```s
+POSTMAN>> https://documenter.getpostman.com/view/10657913/2sA3QmEaG2
+```
+
+### Routes/Endpoints
 <!-- endpoint table -->
 | Method | Endpoint         | Description                                          |
 |--------|------------------|------------------------------------------------------|
