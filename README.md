@@ -56,9 +56,10 @@ Check the [Postman documentation](https://www.getpostman.com/collections/7) for 
 | PUT    | `/tasks/{uid}`   | Update a task                                        |
 | DELETE | `/tasks/{uid}`   | Delete a task                                        |
 
-
 ## Websockets and Real-time Updates
 By default, the application runs Laravel Reverb on `localhost:8080`. These can be configured further in the .env file. The web socket can be used outside laravel as well.
+
+More documentation about broadcasting and events in Laravel is available [on Laravel's documentation](https://laravel.com/docs/11.x/broadcasting). You can also check the [Laravel Reverb documentation](https://laravel.com/docs/11.x/reverb)
 
 Follow this process to set up web sockets (whether in Laravel or outside Laravel)
 1. Install Laravel Echo and Pusher
