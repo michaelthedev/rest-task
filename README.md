@@ -34,7 +34,11 @@ This project is my attempt at the [Niyo Group task](https://docs.google.com/docu
     ```bash
     php artisan migrate
     ```
-7. Start the development server
+7. Regenerate JWT secret key (for API)
+    ```bash
+    php artisan jwt:secret
+    ```
+8. Start the development server
     ```bash
     php artisan serve
     ```
@@ -61,7 +65,13 @@ By default, the application runs Laravel Reverb on `localhost:8080`. These can b
 
 More documentation about broadcasting and events in Laravel is available [on Laravel's documentation](https://laravel.com/docs/11.x/broadcasting). You can also check the [Laravel Reverb documentation](https://laravel.com/docs/11.x/reverb)
 
+<b>Make sure to run this to regenerate your Reverb keys (on your laravel project)</b>
+```bash
+php artisan reverb:install
+```
+
 Follow this process to set up web sockets (whether in Laravel or outside Laravel)
+
 1. Install Laravel Echo and Pusher
     ```bash
       npm install --save laravel-echo pusher-js
