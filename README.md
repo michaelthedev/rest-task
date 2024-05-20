@@ -128,6 +128,7 @@ This project uses phpunit for feature tests. Run the following command to run th
 php artisan test
 ```
 #### Test screenshot
+![resize](https://github.com/michaelthedev/rest-task/assets/39175160/88e438f9-35ee-46fa-bc66-cd47655eb65e)
 
 
 ## License
