@@ -145,10 +145,6 @@ php artisan test
 #### Test screenshot
 ![resize](https://github.com/michaelthedev/rest-task/assets/39175160/88e438f9-35ee-46fa-bc66-cd47655eb65e)
 
-
-## License
-This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
 ## Author
 Name: [Michael Arawole](https://github.com/michaelthedev).
 
