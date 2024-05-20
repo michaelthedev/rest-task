@@ -44,7 +44,7 @@ This project is my attempt at the [Niyo Group task](https://docs.google.com/docu
     ```
 
 ## API endpoints
-Check the [Postman documentation](https://www.getpostman.com/collections/7) for more details about the API endpoints
+Check the [Postman documentation](https://documenter.getpostman.com/view/10657913/2sA3QmEaG2) for more details about the API endpoints
 
 <!-- endpoint table -->
 | Method | Endpoint         | Description                                          |
