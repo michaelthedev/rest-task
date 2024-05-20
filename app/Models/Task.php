@@ -13,6 +13,7 @@ class Task extends Model
         'uid',
         'title',
         'label',
+        'status',
         'description',
         'due_date',
     ];
