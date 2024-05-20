@@ -29,7 +29,7 @@ final class TaskController extends Controller
             'due_date' => $request->due_date,
         ]);
 
-        CreateTask::dispatch($task);
+        $this->broadcast('create', $task);
 
         return response()->json([
             'message' => 'Task created',
@@ -85,7 +85,7 @@ final class TaskController extends Controller
             $request->only($task->getFillable())
         );
 
-        UpdateTask::dispatch($task);
+        $this->broadcast('update', $task);
 
         return response()->json([
             'message' => 'Task updated',
@@ -104,7 +104,7 @@ final class TaskController extends Controller
 
         $task->delete();
 
-        DeleteTask::dispatch([
+        $this->broadcast('delete', [
             'uid' => $uid,
             'user_id' => auth()->id(),
         ]);
@@ -120,5 +120,18 @@ final class TaskController extends Controller
             ->tasks()
             ->where('uid', $uid)
             ->first();
+    }
+
+    private function broadcast(string $event, Task|array $data): void
+    {
+        if (config('broadcasting.default') === null) {
+            return;
+        }
+
+        match ($event) {
+            'create' => CreateTask::dispatch($data),
+            'update' => UpdateTask::dispatch($data),
+            'delete' => DeleteTask::dispatch($data),
+        };
     }
 }
