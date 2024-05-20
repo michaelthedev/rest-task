@@ -1,7 +1,22 @@
 # TaskMan
 
-### About
+## About
 This project is my attempt at the [Niyo Group task](https://docs.google.com/document/d/1hZYonhtUCVZGW_HADGyM8FWSMc57_2QmEp31TrulJj4)
+
+## Features
+1. User Authentication
+    * Registration
+    * Login
+    * JWT API token
+    * Refresh token
+    * Logout
+2. Task Management
+    * Create a task
+    * Update a task
+    * Delete a task
+    * Get all tasks
+    * Get a task by unique id
+3. Real-time updates using websockets
 
 ## Installation
 1. Prerequisites
